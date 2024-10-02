@@ -50,10 +50,10 @@ text = "Address:"
 
 [node name="LineEdit" type="LineEdit" parent="LobbyPanel"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 38.0
-offset_right = 210.0
-offset_bottom = 69.0
+offset_left = 11.0
+offset_top = 34.0
+offset_right = 211.0
+offset_bottom = 65.0
 text = "127.0.0.1"
 placeholder_text = "127.0.0.1"
 
