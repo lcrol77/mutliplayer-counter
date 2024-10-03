@@ -70,3 +70,6 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "-"
+
+[connection signal="pressed" from="Panel/increment" to="." method="_on_increment_pressed"]
+[connection signal="pressed" from="Panel/decrement" to="." method="_on_decrement_pressed"]
