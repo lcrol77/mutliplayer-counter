@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cas0jj85j671k"]
+[gd_scene load_steps=2 format=3 uid="uid://cas0jj85j671k"]
+
+[ext_resource type="Script" path="res://lobby.gd" id="1_i6bmw"]
 
 [node name="Lobby" type="Control"]
 layout_mode = 3
@@ -39,8 +41,9 @@ offset_right = 110.0
 offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_i6bmw")
 
-[node name="Label" type="Label" parent="LobbyPanel"]
+[node name="AddressLabel" type="Label" parent="LobbyPanel"]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 11.0
@@ -48,7 +51,7 @@ offset_right = 78.0
 offset_bottom = 34.0
 text = "Address:"
 
-[node name="LineEdit" type="LineEdit" parent="LobbyPanel"]
+[node name="Address" type="LineEdit" parent="LobbyPanel"]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 34.0
@@ -57,7 +60,7 @@ offset_bottom = 65.0
 text = "127.0.0.1"
 placeholder_text = "127.0.0.1"
 
-[node name="Button" type="Button" parent="LobbyPanel"]
+[node name="HostButton" type="Button" parent="LobbyPanel"]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 79.0
@@ -65,10 +68,31 @@ offset_right = 91.0
 offset_bottom = 110.0
 text = "Host"
 
-[node name="Button2" type="Button" parent="LobbyPanel"]
+[node name="JoinButton" type="Button" parent="LobbyPanel"]
 layout_mode = 0
 offset_left = 130.0
 offset_top = 79.0
 offset_right = 210.0
 offset_bottom = 110.0
 text = "Join"
+
+[node name="StatusOk" type="Label" parent="LobbyPanel"]
+visible = false
+layout_mode = 0
+offset_left = 11.0
+offset_top = 114.0
+offset_right = 211.0
+offset_bottom = 137.0
+text = "SUCCESS TEXT"
+horizontal_alignment = 1
+
+[node name="StatusFail" type="Label" parent="LobbyPanel"]
+visible = false
+modulate = Color(1, 0.427451, 0.345098, 1)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 114.0
+offset_right = 211.0
+offset_bottom = 137.0
+text = "FAIL TEXT"
+horizontal_alignment = 1
