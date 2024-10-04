@@ -9,6 +9,7 @@ extends Control
 @onready var status_fail: Label = $StatusFail
 
 var peer: ENetMultiplayerPeer
+var counter: Counter
 
 func _ready() -> void:
 	# Connect all the callbacks related to networking
@@ -20,11 +21,10 @@ func _ready() -> void:
 
 #region Network callbacks from SceneTree
 func _player_connected(_id: int)-> void: 
-	var counter: Control = load("res://counter.tscn").instantiate()
-	# Connect deferred so we can safely erase it from the callback.
-	counter.game_finished.connect(_end_game, CONNECT_DEFERRED)
-	get_tree().get_root().add_child(counter)
-	hide()
+	print("player connected")
+	if multiplayer.is_server():
+		counter.sync.rpc(counter.count)
+	
 
 func _player_disconnected(_id: int)-> void: 
 	if multiplayer.is_server():
@@ -80,9 +80,7 @@ func _on_host_pressed() -> void:
 	multiplayer.set_multiplayer_peer(peer)
 	host_button.set_disabled(true)
 	join_button.set_disabled(true)
-	_set_status("Waiting for player...", true)
-	get_window().title = ProjectSettings.get_setting("application/config/name") + ": Server"
-
+	load_game()
 
 func _on_join_pressed() -> void:
 	var ip := address.get_text()
@@ -97,4 +95,12 @@ func _on_join_pressed() -> void:
 
 	_set_status("Connecting...", true)
 	get_window().title = ProjectSettings.get_setting("application/config/name") + ": Client"
+	load_game()
 #endregion
+
+func load_game() -> void:
+	counter = load("res://counter.tscn").instantiate()
+	# Connect deferred so we can safely erase it from the callback.
+	counter.game_finished.connect(_end_game, CONNECT_DEFERRED)
+	get_tree().get_root().add_child(counter)
+	hide()
