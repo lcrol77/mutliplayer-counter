@@ -20,11 +20,9 @@ func _ready() -> void:
 	multiplayer.server_disconnected.connect(_server_disconnected)
 
 #region Network callbacks from SceneTree
-func _player_connected(_id: int)-> void: 
-	print("player connected")
+func _player_connected(_id: int)-> void:
 	if multiplayer.is_server():
 		counter.sync.rpc(counter.count)
-	
 
 func _player_disconnected(_id: int)-> void: 
 	if multiplayer.is_server():
@@ -33,7 +31,8 @@ func _player_disconnected(_id: int)-> void:
 		_end_game("Server disconnected.")
 
 func _connected_ok()-> void:
-	pass
+	load_game()
+
 
 func _connected_fail()-> void:
 	_set_status("Couldn't connect.", false)
@@ -95,7 +94,6 @@ func _on_join_pressed() -> void:
 
 	_set_status("Connecting...", true)
 	get_window().title = ProjectSettings.get_setting("application/config/name") + ": Client"
-	load_game()
 #endregion
 
 func load_game() -> void:
