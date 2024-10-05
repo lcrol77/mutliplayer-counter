@@ -25,10 +25,7 @@ func _player_connected(_id: int)-> void:
 		counter.sync.rpc(counter.count)
 
 func _player_disconnected(_id: int)-> void: 
-	if multiplayer.is_server():
-		_end_game("Client disconnected.")
-	else:
-		_end_game("Server disconnected.")
+	pass
 
 func _connected_ok()-> void:
 	load_game()
